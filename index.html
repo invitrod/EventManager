@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Nebulas events</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,800" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.2/css/bootstrap-colorpicker.min.css"
+    />
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.css" />
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <header class="container-fluid d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center" style="font-size: 22px;">
+            <a href="index.html">
+                <img class="logo" src="img/logo.png" alt="logo" style="height: 50px;">
+            </a>
+        </div>
+        <button id="add-event" class="btn btn-outline-secondary" data-toggle="modal" data-target="#event-modal">
+            <i class="fas fa-plus"></i>New event</button>
+    </header>
+    <div class="container-fluid d-flex flex-wrap page-body w-100 events-deck">
+        <div class="d-flex flex-column justify-content-start align-items-center event-group">
+            <h4>Today</h4>
+            <div class="d-flex event" data-event-id="1">
+                <div class="event-header d-flex justify-content-between">
+                    <div clas="event-date">9:00</div>
+                </div>
+                <div class="event-body">
+                    Create your first event!
+                </div>
+                <div class="event-controls">
+                    <button class="event-control edit" title="Remove event" data-toggle="modal" data-target="#remove-modal">
+                        &times;
+                    </button>
+                </div>
+            </div>
+            <div class="d-flex event" data-event-id="1">
+                <div class="event-header d-flex justify-content-between">
+                    <div clas="event-date">10:00</div>
+                </div>
+                <div class="event-body">
+                    Create your first event!
+                </div>
+                <div class="event-controls">
+                    <button class="event-control edit" title="Remove event" data-toggle="modal" data-target="#remove-modal">
+                        &times;
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-column justify-content-start align-items-center event-group">
+            <h4>Tomorrow</h4>
+            <div class="d-flex event" data-event-id="1">
+                <div class="event-header d-flex justify-content-between">
+                    <div clas="event-date">12:00</div>
+                </div>
+                <div class="event-body">
+                    Create your first event!
+                </div>
+                <div class="event-controls">
+                    <button class="event-control edit" title="Remove event" data-toggle="modal" data-target="#remove-modal">
+                        &times;
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="event-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="event-form">
+                        <div class="form-group">
+                            <label for="event-text">Your event</label>
+                            <input class="form-control" id="event-text" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-date">Event date</label>
+                            <div class="input-group" id="dtmp1">
+                                <input type="text" class="form-control" required id="event-date" />
+                                <div class="input-group-append">
+                                    <span class="input-group-text input-group-addon">
+                                        <i class="far fa-calendar-alt"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <label for="event-color">Event color</label>
+                        <div id="cp" class="input-group mb-3 colorpicker-component" for="event-color">
+                            <input type="text" class="form-control" id="event-color" value="#FFF">
+                            <div class="input-group-append">
+                                <span class="input-group-text input-group-addon">
+                                    <i></i>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" form="event-form" id="submitBtn">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="remove-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Remove event</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure want to delete a event?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button id="deleteBtn" type="button" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.2/js/bootstrap-colorpicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.js"></script>
+    <script src="js/nebPay.js"></script>
+    <script src="js/contractApi.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        window.addEventListener("load", function () {
+            let isExtensionExist = typeof (webExtensionWallet) !== "undefined";
+            if (!isExtensionExist) {
+                $(".page-body").empty();
+                $(".page-body").append('<div class="no-extension">Please install <a href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a> to use Nebulas events</div>');
+            }
+            else {
+                $('#dtmp1').datetimepicker({
+                    icons: {
+                        time: 'far fa-clock'
+                    }
+                });
+
+                $('#cp').colorpicker();
+                $('#event-modal').on('show.bs.modal', function (e) {
+                    let event = $(e.relatedTarget).closest(".event");
+                    let eventId = event.data('event-id');
+                    var modal = $(this);
+                    if (!eventId) {
+                        modal.find('.modal-title').text('Add new event');
+                        modal.find('.modal-body #event-text').val("");
+                        modal.find('#submitBtn').data('event-id', "");
+                    }
+                    else {
+                        modal.find('.modal-title').text('Edit event');
+                        modal.find('.modal-body #event-text').val(event.find(".event-body").text());
+                        let color = event.css("background-color");
+                        console.log(color);
+                        modal.find('#event-color').val(color);
+                        modal.find('#submitBtn').data('event-id', eventId);
+                        $('#cp').colorpicker();
+                    }
+
+                });
+
+                $('#remove-modal').on('show.bs.modal', function (e) {
+                    let event = $(e.relatedTarget).closest(".event");
+                    let eventId = event.data('event-id');
+                    $(this).find('#deleteBtn').data('event-id', eventId);
+                    console.log($(this).find('#deleteBtn').data('event-id'));
+                });
+
+                let api = new EventContract();
+                api.getByWallet(resp => {
+                    if (resp.result) {
+                        let events = JSON.parse(resp.result);
+                        if (events.length > 0) {
+                            $(".events-deck").empty();
+
+                            //group by dates
+                            let groupedEvents = [];
+
+                            for (const event of events) {
+                                let date = dateToEpoch(new Date(event.date));
+                                let existEvents = groupedEvents[date] || [];
+                                existEvents.push(event);
+                                groupedEvents[date] = existEvents;
+                            }
+
+                            groupedEvents.sort();
+
+                            for (const dateOfEvents in groupedEvents) {
+                                let dateEvents = groupedEvents[dateOfEvents];
+                                dateEvents.sort((a, b) => a.date > b.date ? 1 : -1);
+
+                                let date = dateToEpoch(new Date(dateEvents[0].date));
+
+                                let tomorrow = new Date();
+                                tomorrow.setDate(new Date().getDate() + 1);
+                                let isToday = date == dateToEpoch(new Date());
+                                let isTomorrow = date == dateToEpoch(tomorrow)
+                                let html = `<div class="d-flex flex-column justify-content-start align-items-center event-group ${isToday ? "today" : ""}">
+                                                <h4>${isToday ? "Today" : (isTomorrow ? "Tomorrow" : convertUnixStampToScreenDate(date))}</h4>`;
+                                for (const dateEvent of dateEvents) {
+                                    let eventDate = new Date(dateEvent.date);
+                                    let time = addZeroIfOneCharacter(eventDate.getHours()) + ":" + addZeroIfOneCharacter(eventDate.getMinutes());
+                                    html += `<div class="d-flex event" data-event-id="${dateEvent.id}" style="background: ${dateEvent.color || "#fff"}">
+                                                    <div class="event-header d-flex justify-content-between">
+                                                        <div clas="event-date">${time}</div>
+                                                    </div>
+                                                    <div class="event-body">${dateEvent.text}</div>
+                                                    <div class="event-controls ml-auto">
+                                                        <button class="event-control" title="Remove event" data-toggle="modal" data-target="#remove-modal">
+                                                            &times;
+                                                        </button>
+                                                    </div>
+                                                </div>`;
+                                }
+
+                                html += "</div>";
+
+                                $(".events-deck").append(html);
+                            }
+
+                        }
+                    }
+                });
+
+
+                $("#event-form").submit((e) => {
+                    e.preventDefault();
+
+                    let text = $("#event-text").val();
+                    let color = $("#event-color").val();
+                    let date = $('#event-date').val();
+                    let eventId = $("#submitBtn").data("event-id");
+
+                    date = +new Date(date);
+
+                    if (!eventId) {
+                        api.add(date, text, color);
+                    }
+                    else {
+                        api.update(eventId, date, text, color);
+                    }
+                    $('#event-modal').modal('hide');
+                });
+
+                $("#deleteBtn").click(() => {
+                    let eventId = $("#deleteBtn").data("event-id");
+                    api.delete(eventId);
+                    $('#remove-modal').modal('hide');
+                });
+            }
+        });
+
+    </script>
+</body>
+
+</html>
